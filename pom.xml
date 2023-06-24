@@ -68,6 +68,9 @@
         <!-- Override for Latest Versions -->
         <logback.version>1.4.8</logback.version>
         <slf4j.version>2.0.7</slf4j.version>
+
+        <!-- Skip Enforcer until it supports jdk 21 -->
+        <enforcer.skip>true</enforcer.skip>
     </properties>
 
     <dependencies>
