@@ -29,8 +29,8 @@ and doesn't require any changes, unless you have your own version of `setenv.sh`
 * `conf/logback-access.xml` to `$CATALINA_HOME/conf` (older version was called `logback-access-localhost.xml`)
 * `conf/server.xml` to `$CATALINA_HOME/conf` (this file contains proper valve and doesn't require any
 changes, unless you have your own version of `server.xml`)
-* `lib/logback-core-1.4.8.jar` to `$CATALINA_HOME/lib`
-* `lib/logback-access-1.4.8.jar` to `$CATALINA_HOME/lib`
+* `lib/logback-core-1.4.11.jar` to `$CATALINA_HOME/lib`
+* `lib/logback-access-1.4.11.jar` to `$CATALINA_HOME/lib`
 
 Delete `$CATALINA_HOME/conf/logging.properties`. This will turn off `java.util.logging` completely.
 
