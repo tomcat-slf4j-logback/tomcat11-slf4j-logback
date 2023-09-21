@@ -25,7 +25,7 @@
 
     <groupId>com.github.tomcat-slf4j-logback</groupId>
     <artifactId>tomcat11-slf4j-logback</artifactId>
-    <version>11.0.0-M9-SNAPSHOT</version>
+    <version>11.0.0-M11-SNAPSHOT</version>
 
     <name>tomcat11-slf4j-logback</name>
     <description>Tomcat 11 Slf4j Logback Integration</description>
@@ -62,12 +62,12 @@
         <java.release.version>21</java.release.version>
 
         <!-- Config and Tomcat Versions -->
-        <config.version>1.4.0-SNAPSHOT</config.version>
+        <config.version>1.4.0</config.version>
         <tomcat.version>11.0.0-M11</tomcat.version>
 
         <!-- Override for Latest Versions -->
         <logback.version>1.4.11</logback.version>
-        <slf4j.version>2.0.7</slf4j.version>
+        <slf4j.version>2.0.9</slf4j.version>
 
         <!-- Logstash Json Encoder -->
         <jackson.version>2.15.2</jackson.version>
@@ -217,12 +217,12 @@
                             </artifactSet>
 
                             <filters>
+                                <!-- Include items from tomcat juli -->
                                 <filter>
                                     <artifact>org.apache.tomcat:tomcat-juli</artifact>
                                     <includes>
                                         <include>org/apache/juli/ClassLoaderLogManager**</include>
                                         <include>org/apache/juli/WebappProperties.class</include>
-                                        <include>META-INF/NOTICE</include>
                                     </includes>
                                 </filter>
 
@@ -239,6 +239,14 @@
                                     <artifact>ch.qos.logback:logback-classic</artifact>
                                     <excludes>
                                         <exclude>META-INF/services/jakarta.servlet.ServletContainerInitializer</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude licenses as separately handled -->
+                                <filter>
+                                    <artifact>org.slf4j:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/LICENSE.txt</exclude>
                                     </excludes>
                                 </filter>
 
@@ -270,7 +278,15 @@
                                 <filter>
                                     <artifact>ch.qos.logback:*</artifact>
                                     <excludes>
-                                        <exclude>module-info.*</exclude>
+                                        <exclude>META-INF/versions/9/module-info.class</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude licenses as separately handled -->
+                                <filter>
+                                    <artifact>com.fasterxml*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/LICENSE</exclude>
                                     </excludes>
                                 </filter>
 
@@ -279,6 +295,14 @@
                                     <artifact>com.fasterxml*:*</artifact>
                                     <excludes>
                                         <exclude>META-INF/MANIFEST.MF</exclude>
+                                    </excludes>
+                                </filter>
+
+                                <!-- Exclude notices as separately handled -->
+                                <filter>
+                                    <artifact>com.fasterxml*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/NOTICE</exclude>
                                     </excludes>
                                 </filter>
 
@@ -332,6 +356,12 @@
                                 </relocation>
 
                                 <relocation>
+                                    <pattern>com/fasterxml</pattern>
+                                    <shadedPattern>org/apache/juli/logging/com/fasterxml</shadedPattern>
+                                    <rawString>true</rawString>
+                                </relocation>
+
+                                <relocation>
                                     <pattern>net.logstash.logback</pattern>
                                     <shadedPattern>org.apache.juli.logging.net.logstash.logback</shadedPattern>
                                 </relocation>
@@ -344,7 +374,7 @@
                                     <file>${project.basedir}/LICENSE</file>
                                 </transformer>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
-                                    <resource>META-INF/LICENSE-tomcat.txt</resource>
+                                    <resource>META-INF/LICENSE-jackson.txt</resource>
                                     <file>${project.build.directory}/tomcat-slfj4-logback-config/assembly/LICENSE-jackson.txt</file>
                                 </transformer>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
@@ -361,8 +391,12 @@
                                 </transformer>
 
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
-                                    <resource>META-INF/LICENSE-tomcat.txt</resource>
+                                    <resource>META-INF/NOTICE-jackson.txt</resource>
                                     <file>${project.build.directory}/tomcat-slfj4-logback-config/assembly/NOTICE-jackson.txt</file>
+                                </transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
+                                    <resource>META-INF/NOTICE-tomcat.txt</resource>
+                                    <file>${project.build.directory}/tomcat-slfj4-logback-config/assembly/NOTICE-tomcat.txt</file>
                                 </transformer>
                             </transformers>
                         </configuration>
