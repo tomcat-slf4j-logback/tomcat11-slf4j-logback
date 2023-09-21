@@ -29,8 +29,8 @@ and doesn't require any changes, unless you have your own version of `setenv.sh`
 * `conf/logback-access.xml` to `$CATALINA_HOME/conf` (older version was called `logback-access-localhost.xml`)
 * `conf/server.xml` to `$CATALINA_HOME/conf` (this file contains proper valve and doesn't require any
 changes, unless you have your own version of `server.xml`)
-* `lib/logback-core-1.4.8.jar` to `$CATALINA_HOME/lib`
-* `lib/logback-access-1.4.8.jar` to `$CATALINA_HOME/lib`
+* `lib/logback-core-1.4.11.jar` to `$CATALINA_HOME/lib`
+* `lib/logback-access-1.4.11.jar` to `$CATALINA_HOME/lib`
 
 Delete `$CATALINA_HOME/conf/logging.properties`. This will turn off `java.util.logging` completely.
 
@@ -98,7 +98,8 @@ This project's main and only goal is to allow the following:
   of logback-access,
 * make possible to use independent configuration of slf4j+logback from all web applications which may carry
   their own slf4j-api, logback-core, and logback-classic in their `WEB-INF/lib` directory.
-* make possible to use [`logstash-logback-encoder`](https://github.com/logfellow/logstash-logback-encoder) for logging in JSON format
+* make possible to use [`logstash-logback-encoder`](https://github.com/logfellow/logstash-logback-encoder)
+  for logging in JSON format.
 
 Using only Mavens `pom.xml` file, proper source JARs are downloaded from maven repository and unpacked.
 Then all classes are refactored under `org.apache.juli.logging` package/subpackages and then compiled.
@@ -172,10 +173,6 @@ config file, e.g.:
                 <pattern>%d{HH:mm:ss.SSS} %-5level {%thread} [%logger{20}] : %msg%n</pattern>
             </encoder>
         </appender>
-        <logger name="org.apache.catalina.core.ContainerBase.[Catalina].[localhost]" level="INFO"
-                additivity="false">
-            <appender-ref ref="FILE-LOCALHOST" />
-        </logger>
         <root level="INFO">
             <appender-ref ref="CONSOLE" />
         </root>
@@ -195,9 +192,8 @@ Alternatively, you can use bundled Logstash encoder for logging in JSON format:
 Configuration of logback-access doesn't require renamed packages, as the required JARs are loaded from
 _common class loader_.
 
-Sample `logback.xml` reflecting the configuration from standard `$CATALINA_HOME/conf/logging.properties`
-can be found in conf/logback.xml from github [releases](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback/releases).
-
+Sample `logback.xml` reflecting the configuration from standard `$CATALINA_HOME/conf/logging.properties` can be found in
+[logback.xml](https://github.com/tomcat-slf4j-logback/tomcat-slf4j-logback-config/blob/master/src/main/resources/assembly/conf/logback.xml).
 
 ## Tomcat Customization ##
 
