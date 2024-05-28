@@ -57,9 +57,9 @@
     </scm>
 
     <properties>
-        <!-- Require java 21 -->
-        <java.version>21</java.version>
-        <java.release.version>21</java.release.version>
+        <!-- Require java 17 -->
+        <java.version>17</java.version>
+        <java.release.version>17</java.release.version>
 
         <!-- Config and Tomcat Versions -->
         <config.version>1.5.1</config.version>
