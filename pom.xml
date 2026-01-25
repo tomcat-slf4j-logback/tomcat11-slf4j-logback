@@ -325,7 +325,7 @@
                                     </excludes>
                                 </filter>
 
-                                <!-- Exclude module info as conflicting and we are not using (we require java 8 as a baseline) -->
+                                <!-- Exclude module info as conflicting and we are not using -->
                                 <filter>
                                     <artifact>org.slf4j:*</artifact>
                                     <excludes>
@@ -341,7 +341,7 @@
                                     </excludes>
                                 </filter>
 
-                                <!-- Exclude module info as conflicting and we are not using (we require java 8 as a baseline) -->
+                                <!-- Exclude module info as conflicting and we are not using -->
                                 <filter>
                                     <artifact>ch.qos.logback:*</artifact>
                                     <excludes>
@@ -429,14 +429,22 @@
                                     <pattern>org.apache.commons.logging</pattern>
                                     <shadedPattern>org.apache.juli.logging</shadedPattern>
                                 </relocation>
+
                                 <relocation>
                                     <pattern>org.slf4j</pattern>
                                     <shadedPattern>org.apache.juli.logging.org.slf4j</shadedPattern>
                                 </relocation>
+
                                 <relocation>
                                     <pattern>ch.qos.logback</pattern>
                                     <shadedPattern>org.apache.juli.logging.ch.qos.logback</shadedPattern>
                                 </relocation>
+                                <relocation>
+                                    <pattern>ch/qos/logback</pattern>
+                                    <shadedPattern>org/apache/juli/logging/ch/qos/logback</shadedPattern>
+                                    <rawString>true</rawString>
+                                </relocation>
+
 
                                 <!-- Located in org.apache.juli.logging.ch.qos.logback.classic.util.ContextInitializer -->
                                 <relocation>
