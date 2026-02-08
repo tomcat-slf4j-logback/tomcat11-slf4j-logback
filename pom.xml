@@ -340,7 +340,7 @@
                                 <filter>
                                     <artifact>ch.qos.logback:*</artifact>
                                     <excludes>
-                                        <exclude>module-info.*</exclude>
+                                        <exclude>module-info.class</exclude>
                                     </excludes>
                                 </filter>
 
@@ -459,7 +459,7 @@
 
                                 <relocation>
                                     <pattern>com/fasterxml/jackson</pattern>
-                                    <shadedPattern>org/apache/juli/logging/com/fasterxml.jackson</shadedPattern>
+                                    <shadedPattern>org/apache/juli/logging/com/fasterxml/jackson</shadedPattern>
                                     <rawString>true</rawString>
                                 </relocation>
 
