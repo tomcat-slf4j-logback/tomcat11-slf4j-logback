@@ -20,7 +20,7 @@
 
     <groupId>com.github.tomcat-slf4j-logback</groupId>
     <artifactId>tomcat11-slf4j-logback</artifactId>
-    <version>11.0.19-SNAPSHOT</version>
+    <version>11.0.21-SNAPSHOT</version>
 
     <name>tomcat11-slf4j-logback</name>
     <description>Tomcat 11 Slf4j Logback Integration</description>
