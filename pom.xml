@@ -127,7 +127,7 @@
         <slf4j.version>2.0.18</slf4j.version>
 
         <!-- Config Logstash Json Encoder -->
-        <jackson.version>3.2.0</jackson.version>
+        <jackson.version>3.2.1</jackson.version>
         <logstash.version>9.0</logstash.version>
 
         <!-- Automatic Module Name -->
